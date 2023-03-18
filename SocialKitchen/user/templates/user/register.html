@@ -6,10 +6,10 @@ create a new account
 {% endblock %}
 {% block content %}
 <div class="registration_form">
-    <form>
-        <input type="text" placeholder="First name">
-        <input type="text" placeholder="Last name">
-        <input type="submit" placeholder="submit">
+    <form method="post" action="">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" placeholder="create user">
     </form>
 </div>
 
