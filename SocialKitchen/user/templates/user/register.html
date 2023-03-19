@@ -1,24 +1,48 @@
-{% extends "user/layout.html" %}
-{% block head%}
-{% block title %}
-create a new account
-{% endblock %}
-{% endblock %}
-{% block content %}
-<div class="registration_form">
-    <form method="POST" action="">
-        {% csrf_token %}
-        {% for field in form%}
-        <div>
-            <p>{{field.label}}: <br>{{field}}</p>
+{% extends 'user/layout.html' %}
+{%load static%}
 
-        {% for error in field.errors %}
-        <small style="color: red;">{{error}}</small>
-            {% endfor %}
-        </div>
-        {% endfor %}
-        <button type="submit">create</button>
-    </form>
+
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'user/styles.css' %}">
+{% endblock %}
+
+{% block content %}
+<body class="page">
+  <div class="container">
+  <h2 style="font-family: sans-serif;">Create new User</h2>
+  <form method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+      <label style="font-weight: bold;
+      font-family: sans-serif;" for="username">Username:</label>
+      {{ form.username }}
+    </div>
+    <div class="form-group">
+      <label style="font-weight: bold;
+      font-family: sans-serif;" for="firstname">First Name:</label>
+      {{ form.first_name }}
+    </div>
+    <div class="form-group">
+      <label style="font-weight: bold;
+      font-family: sans-serif;" for="lastname">Last Name:</label>
+      {{ form.last_name }}
+    </div>
+    <div class="form-group">
+      <label style="font-weight: bold;
+      font-family: sans-serif;" for="password">Password:</label>
+      {{ form.password1 }}
+    </div>
+    <div class="form-group">
+      <label style="font-weight: bold;
+      font-family: sans-serif;" for="confirm password">Repeat Password:</label>
+      {{ form.password2 }}
+    </div>
+    <button type="submit" class="btn btn-primary">Register</button>
+  </form>
 </div>
+</body>
+
+
 
 {% endblock %}
