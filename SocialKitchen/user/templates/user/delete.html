@@ -1,0 +1,27 @@
+{% extends 'user/base.html' %}
+{% block content %}
+
+<h1 class="text-2xl m-10 font-bold"> Delete Recipes </h1>
+<form  class="bg-white shadow-md m-10 w-3/5" method="post">
+    {% csrf_token %}
+    <div>
+
+        <label class="block text-gray-700 text-sm font-bold mb-2">Are you sure u want to delete this recipe ? </label>
+
+    </div>
+<div>
+    <label>
+        {{recipe.name}}
+    </label>
+</div>
+
+<div>
+    <img src="{{recipe.image.url}}">
+</div>
+
+<input class="bg-red-500 text-white px-5 py-2" type="submit" name="Confirm" value="Confirm">
+<a class="button bg-green-500 text-white px-5 py-2" href="{% url 'user:recipes' %}">Cancel</a>
+
+</form>
+
+{% endblock %}

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title> Social Kitchen</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <style>
+    .fa {
+      padding: 5px;
+      font-size: 25px;
+      width: 50px;
+    }
+    .inputfield input{
+      margin-bottom: 10px;
+    }
+    .inputlabel label{
+      margin-bottom: 17px;
+    }
+    .wrapper{
+      text-align: center;
+      padding-top: 8em;
+      font-size: 29px;
+    }
+  </style>
+</head>
+<body>
+
+<div>
+  <nav class="navbar navbar bg-success navbar-dark">
+    <div class="col-sm-6">
+      <a class="navbar-brand" href="/"> Social Kitchen</a>
+    </div>
+        <div class="col-sm-6" style="text-align:right;">
+          <a class="navbar-brand" href="/"> Home </a>
+          {% if user.is_authenticated %}
+            <a class="navbar-brand" href="/logout">LOGOUT</a>
+            <a class="navbar-brand" href="/recipes">Welcome-{{user.username}}</a>
+          {% else %}
+            <a class="navbar-brand" href="/loginpage"> Login </a>
+            <a class="navbar-brand" href="/registerpage"> Register </a>
+          {% endif %}
+        </div>
+    </div>
+  </nav>
+</div>
+{% include 'user/message.html' %}
+  
+<div style="min-height: 90vh">
+  {% block content %}
+
+<div class="wrapper">
+  <h2>Social Kitchen</h2>
+  
+</div>
+
+
+
+
+  {% endblock %}
+</div>
+
+<footer
+        class="text-center text-lg-start text-white"
+        style="background-color: #82FF82"
+        >
+  <section
+           class="d-flex justify-content-between p-4"
+           style="background-color: #4BB543"
+           >
+    <div class="me-5">
+      <span>Get connected with us on social networks:</span>
+    </div>
+    <div style="padding-right:50px;">
+      <a href="https://www.google.com/" class="text-white me-4" style="margin-right:8px;">
+        <i class="fab fa-google"></i>
+      </a>
+      <a href="https://www.instagram.com/jawadfadlallah__/" class="text-white me-4" style="margin-right:8px;">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://github.com/mhf200/Social-Kitchen" class="text-white me-4" style="margin-right:8px;">
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+  </section>
+  <section class="">
+   
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+</footer>
+</div>
+</body>
+</html>

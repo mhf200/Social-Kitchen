@@ -1,0 +1,49 @@
+
+{% extends 'user/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<main class="mt-10 mx-auto max-w-7xl px-4 sm:st-12 sm:px-6 md:mt-16 lg:mt-20 ">
+    
+        <div class="sm:text-center lg:text-left">
+            <h1 class="text-4xl font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
+            <span class="block xl:inline"> Social Kitchen </span>
+            <span class="block text-green-500 xl:inline"> Recipes </span>
+        </h1>
+       
+        </div>
+    
+</main>
+
+<div class="flex mt-5 p-10 justify-center">
+<h2 class="text-3xl font-normal mt-0 mb-2 text-gray-500" >Recent Recipes </h2>
+</div>
+
+<div class="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 xl:grid-cols-3 lg:grid-cols-3 gap-5">
+
+    {%for recipe in recipes %}
+    
+    <a href="{% url 'user:recipe_detail' recipe.id %}">
+        <div class="rounded overflow-hidden shadow-lg">
+            <img class="w-full" src="{{recipe.image.url}}">
+            <div class="px-6 py-4">
+            <div class="font-bold text-xl mb-2">{{recipe.name}}</div>
+            <p class="text-gray-700 text-base">{{recipe.desc}} </p>
+       
+            
+            
+        </div>
+</div>
+</a>
+
+    {%endfor%}
+
+</div>
+
+ 
+   
+
+
+{% endblock%}

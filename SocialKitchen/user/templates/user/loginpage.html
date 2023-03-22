@@ -1,0 +1,56 @@
+{% extends './home.html' %}
+<!DOCTYPE html>
+<html>
+ {% block content %}  
+<head>
+	<title>Login</title>
+	<style>
+    .mainclass {
+      background: #84fab0;
+      background: -webkit-linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5));
+      background: linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5))
+    }
+    .gradient-custom-4 {
+    background: #84fab0;
+    background: -webkit-linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1));
+    background: linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1))
+  }
+	</style>
+
+</head>
+<body>
+<section class="mainclass">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card shadow-2-strong" style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center">
+
+            <h3 class="mb-5"><b>Login</b></h3>
+            <form method="POST", enctype="multipart/form-data" class="inputfield">
+              {% csrf_token %}
+              <div class="row">
+                <div class="col-sm-6 text-left inputlabel">
+                  <label class="form-label" for="typePasswordX-2">Username</label></br>
+                  <label class="form-label" for="typePasswordX-2">Password</label>
+                </div>
+                <div class="col-sm-6 text-right ">
+                  {{form.username}}</br>
+                  {{form.password1}}
+                </div>
+            </div>
+            <div class="d-flex justify-content-center" style="padding: 25px 100px;">
+              <button type="submit" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body" value="Submit">Login</button>
+            </div>
+            <p class="text-center text-muted mt-5 mb-0">Have Not an account? <a href="{% url 'user:registerpage' %}" class="fw-bold text-body"><u>Register Here</u></a></p>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+{% endblock %}
+</html>
