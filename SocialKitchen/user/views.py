@@ -97,3 +97,9 @@ def delete_recipe(request,id):
 def index(request):
     return render(request, 'user/index.html')
 
+
+
+@login_required
+
+def profile(request):
+     return render(request, 'user/profile.html')
