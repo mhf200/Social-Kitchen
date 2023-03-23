@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Recipe
+from .models import Profile
 
 # Create your views here.
 
@@ -61,6 +62,7 @@ def recipe_detail(request,id):
     return render(request , 'user/details.html ',context)
 
 
+@login_required
 def add_recipe(request):
     if request.method == 'POST':
         name = request.POST.get('name')
@@ -105,4 +107,10 @@ def profile(request):
      return render(request, 'user/profile.html')
 
 def create_profile(request):
+     if request.method == 'POST':
+          contact_number = request.POST.get('contact_number')
+          image = request.FILES['upload']
+          user = request.user
+          profile = Profile(user=user , image=image , contact_number = contact_number)
+          profile.save()
      return render(request,'user/createprofile.html')
