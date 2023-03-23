@@ -103,3 +103,6 @@ def index(request):
 
 def profile(request):
      return render(request, 'user/profile.html')
+
+def create_profile(request):
+     return render(request,'user/createprofile.html')
