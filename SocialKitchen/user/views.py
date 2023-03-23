@@ -68,7 +68,8 @@ def add_recipe(request):
         name = request.POST.get('name')
         desc = request.POST.get('desc')
         image = request.FILES['upload']
-        recipe = Recipe(name=name ,  desc = desc , image=image)
+        chef = request.user
+        recipe = Recipe(name=name ,  desc = desc , image=image , chef = chef)
         recipe.save()
     return render(request, 'user/addrecipe.html')
 
