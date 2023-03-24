@@ -124,3 +124,9 @@ def chef_profile(request,id):
      }
      return render(request, 'user/chefprofile.html',context)
      
+def my_listings(request):
+     recipes = Recipe.objects.filter(chef=request.user)
+     context = {
+          'recipes':recipes,
+     }
+     return render(request, 'user/mylistings.html' , context)
