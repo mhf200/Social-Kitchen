@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Recipe
 from .models import Profile
+from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -115,3 +116,11 @@ def create_profile(request):
           profile = Profile(user=user , image=image , contact_number = contact_number)
           profile.save()
      return render(request,'user/createprofile.html')
+
+def chef_profile(request,id):
+     cheff = User.objects.get(id=id)
+     context = {
+          'cheff':cheff,
+     }
+     return render(request, 'user/chefprofile.html',context)
+     
