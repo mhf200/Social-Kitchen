@@ -47,6 +47,8 @@ def logoutUser(request):
 def home( request):
 	return render(request, 'user/home.html')
 
+def index( request):
+	return render(request, 'user/index.html')
 
 def recipes(request):
     recipes = Recipe.objects.all()
@@ -98,8 +100,6 @@ def delete_recipe(request,id):
         return redirect('user:recipes')
     return render(request,'user/delete.html',context)
 
-def index(request):
-    return render(request, 'user/index.html')
 
 
 
