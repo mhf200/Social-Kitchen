@@ -2397,3 +2397,6 @@ iframe.wait-autoplay {
  border: 1px solid #ff530a;
 }
 
+a {
+  text-decoration: none;
+}

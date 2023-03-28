@@ -1,5 +1,4 @@
 {% load static %}
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -7,7 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <link rel="stylesheet" href="{% static 'user/style.css '%}">
+  <link rel="stylesheet" href="{% static 'user/style.css' %}">
+  <link rel="stylesheet" href="{% static 'user/main.css' %}">
 
   <title></title>
 
@@ -17,40 +17,63 @@
 </head>
 
 <body>
+  <style>
+  
+    </style>
+  <header id="header" class="header fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+  
+      <a href="home.html" style="text-decoration:none;" class="logo d-flex align-items-center me-auto me-lg-0">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="assets/img/logo.png" alt=""> -->
+       
+      </a>
+      
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a href="/" style="text-decoration:none;" >Home</a></li>
+          <li><a href="/#about" style="text-decoration:none;" >About</a></li>
+          <li><a href="/#gallery" style="text-decoration:none;" >Gallery</a></li>
+          <li><a href="/#contact" style="text-decoration:none;">Contact</a></li>
 
-  <header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
-      <a class="navbar-brand" href="">Social Kitchen</a>
-      <a class="navbar-brand" href="/recipes">Recipes</a>
-      <a class="navbar-brand" href="/recipes/add">Add Recipe</a>
-      <a class="navbar-brand" href="{%  url 'user:mylistings' %}">My Recipes</a>
+          <li><a class="navbar-brand" href="/recipes">Recipes</a></li>
+          <li><a class="navbar-brand" href="/recipes/add">Add Recipe</a></li>
+          <li><a class="navbar-brand" href="{% url 'user:mylistings' %}">My Recipes</a></li>
+        </ul>
+      </nav><!-- .navbar -->
+
+      <div class="col-sm-6 d-flex justify-content-end align-items-center">
+
       
-      
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+
+        {% if user.is_authenticated %}
+          <a class="btn btn-outline-success ml-3" href="/recipes">Welcome, {{ user.username }}</a>
+          <a class="btn-book-a-table ml-3" href="/logout">LOGOUT</a>
+        {% else %}
+          <a class="btn-book-a-table" href="/loginpage">LOGIN</a>
+        {% endif %}
+        
+        <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+        <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+
       </div>
-    </nav>
-  </header>
-  <div class="container">
-      {% block content %}
-      {% endblock %}
+  
+    </div>
+  </header><!-- End Header --> 
+  
+
+  <div class="container mt-5">
+    {% block content %}
+    {% endblock %}
   </div>
 
   <footer class="text-muted">
     <div class="container text-center">
       
-      </div>
+    </div>
   </footer>
 
   <!-- Bootstrap core JavaScript
   ================================================== -->
   <!-- Placed at the end of the document so the pages load faster -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-</body>
-</html>
-
-</code></pre>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384

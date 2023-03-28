@@ -6,7 +6,9 @@
 {% for recipe in recipes%}
 <div class="itemcontainer flex shadow-lg m-10 p-10">
     <span class="w-1/5">
-        <img class="w-40 h-40" src="{{recipe.image.url}}">
+        {% if recipe.image %}
+            <img class="w-full" src="{{ recipe.image.url }}">
+            {% endif %}
     </span>
     <span class="w-1/5">
         <div class="font-bold text-green-700">{{recipe.name}}</div>
