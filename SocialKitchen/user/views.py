@@ -105,8 +105,7 @@ def delete_recipe(request,id):
 
 @login_required
 
-def profile(request):
-     return render(request, 'user/profile.html')
+
 
 def create_profile(request):
      if request.method == 'POST':
@@ -130,3 +129,8 @@ def my_listings(request):
           'recipes':recipes,
      }
      return render(request, 'user/mylistings.html' , context)
+
+def profile(request):
+    users = User.objects.all()
+    return render(request, 'user/users.html', {'users': users})
+

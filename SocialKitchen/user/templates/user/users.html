@@ -1,0 +1,19 @@
+
+{% extends 'user/base.html' %}
+
+{% block content %}
+<div class="grid p-10 grid-cols-1 lg:grid-cols-3 sm:grid-cols-1">
+    {% for user in users %}
+    <div class="rounded shadow-lg">
+        <div>
+            <!-- Display the user's profile picture if available -->
+            {% if user.profile %}
+            <img src="{{ user.profile.image.url }}" >
+            {% endif %}
+        </div>
+        <div class="font-bold text-xl mb-2 px-6 py-4">{{ user.username }}</div>
+        <div class="font-bold text-xl mb-2 px-6 py-4">📞{{ user.profile.contact_number|default:"N/A" }}</div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

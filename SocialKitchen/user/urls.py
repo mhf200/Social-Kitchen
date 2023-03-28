@@ -7,7 +7,6 @@ urlpatterns = [
     path('loginpage/', views.loginPage, name="loginpage"),
     path('registerpage/', views.registerPage, name="registerpage"),
     path('logout/', views.logoutUser, name="logout"),
-    
     path('', views.home, name='home'),
     path('recipes/',views.recipes , name='recipes') ,
     path ( 'recipes/<int:id>/', views.recipe_detail , name='recipe_detail' ),
@@ -19,4 +18,6 @@ urlpatterns = [
     path ('createprofile/',views.create_profile , name='createprofile'),
     path ('chefprofile/<int:id>',views.chef_profile , name='chefprofile'),
     path ('recipes/mylistings',views.my_listings , name='mylistings'),
+
+
 ]
