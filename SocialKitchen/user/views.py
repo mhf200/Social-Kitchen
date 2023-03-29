@@ -8,6 +8,8 @@ from django.contrib import messages
 from .models import Recipe
 from .models import Profile
 from django.contrib.auth.models import User
+from django.core.paginator import Paginator
+from django.db.models import Q
 
 # Create your views here.
 
@@ -51,11 +53,19 @@ def index( request):
 	return render(request, 'user/index.html')
 
 def recipes(request):
-    recipes = Recipe.objects.all()
+    queryset = Recipe.objects.all()
+    query = request.GET.get('q')
+    if query:
+        queryset = queryset.filter(Q(name__icontains=query))
+        
+    paginator = Paginator(queryset, 9)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    
     context = {
-        'recipes': recipes 
+        'recipes': page_obj
     }
-    return render(request , 'user/index.html', context)
+    return render(request, 'user/index.html', context)
 
 def recipe_detail(request,id):
     recipe = Recipe.objects.get(id=id)
@@ -133,4 +143,5 @@ def my_listings(request):
 def profile(request):
     users = User.objects.all()
     return render(request, 'user/users.html', {'users': users})
+
 
