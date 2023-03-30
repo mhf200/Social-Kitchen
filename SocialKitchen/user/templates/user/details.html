@@ -1,27 +1,83 @@
-{% extends 'user/base.html' %}
 
-{% block content %}
 
-<div class="  container">
-  <div class=" row justify-content-center">
-    <div class=" mt-16 col-md-8 col-lg-6">
-      <div class=" card mb-4">
-        <img class=" card-img-top" src="{{recipe.image.url}}">
-        <div class="card-body">
-          <h3 class="card-title">{{recipe.name}}</h3>
-          <p class="card-text">{{recipe.desc}}</p>
-          <p class="card-text">Posted By: <a href="{% url 'user:chefprofile' recipe.chef.id %}">{{recipe.chef}}</a></p>
-          <p class="card-text">Contact: {{recipe.chef.profile.contact_number}}</p>
-          <hr>
-          <h5 class="card-subtitle mb-2 text-muted">Ingredients:</h5>
-          <pre class="card-text">{{recipe.ingredients}}</pre>
-          <hr>
-          <h5 class="card-subtitle mb-2 text-muted">Cooking Instructions:</h5>
-          <pre class="card-text">{{recipe.cooking_instructions}}</pre>
+{%load static%}
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        
+      <link rel="stylesheet" type="text/css" href="{% static 'user/main.css' %}">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Amatic+SC:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+      
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+      </head>
+      
+      <body style="background-color: #4CAF50;">
+        {% block content %}
+        <nav id="navbar" class="navbar" style="background-color: white;">
+            <ul>
+              <li><a href="/" style="text-decoration:none;" >Home</a></li>
+              <li><a href="/#about" style="text-decoration:none;" >About</a></li>
+              <li><a href="/#gallery" style="text-decoration:none;" >Gallery</a></li>
+              <li><a href="/#contact" style="text-decoration:none;">Contact</a></li>
+    
+              <li><a class="navbar-brand" href="/recipes">Recipes</a></li>
+              <li><a class="navbar-brand" href="/recipes/add">Add Recipe</a></li>
+              <li><a class="navbar-brand" href="{% url 'user:mylistings' %}">My Recipes</a></li>
+              <li><a href="{% url 'user:profile' %}">User Profiles</a></li>
+              
+            </ul>
+          </nav><!-- .navbar -->
+      <div class="container mt-5" >
+        <div class="row ">
+          <div class="col-md-4 mb-4 ">
+            <div class="card">
+              <img   class="card-img-top  " src="{{recipe.image.url}}" alt="{{recipe.name}}">
+            </div>
+            
+
+
+          </div>
+          <div class="col-md-8  "  style="background-color: rgba(211, 211, 211, 0.4);">
+            <div class="card mb-4 ">
+              <div class="card-body " >
+                <div class="section-header "> 
+                <p class="card-title  ">{{recipe.name}}</p>
+                <p style="color: red;"  class="card-text">{{recipe.desc}}</p>
+                <p class="card-text">Posted By: <span>
+                <a href="{% url 'user:chefprofile' recipe.chef.id %}">{{recipe.chef}}</a></span></p>
+                <p class="card-text">Contact: {{recipe.chef.profile.contact_number}}</p></div>
+                <hr>
+                <div class="section-header "> 
+                <p style="color: red;">Ingredients</p></div>
+<p style="font-family: Verdana, sans-serif; color: black; white-space: pre-wrap;">{{recipe.ingredients}}</p>
+<hr>
+<div class="section-header "><p  style= "color: red;">Cooking Instructions</p></div>
+<p style="font-family: Verdana, sans-serif; color: black; white-space: pre-wrap;">{{recipe.cooking_instructions}}</p>
+<img src="{% static 'user/images/rec.webp' %}" class="img-fluid float-end" style="max-width: 200px;" alt="Responsive image">
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
+    </body>
+  <style>
 
+#content {
+  margin-top: 250px;
+}
+
+  </style>
 {% endblock %}
+
+</html>
