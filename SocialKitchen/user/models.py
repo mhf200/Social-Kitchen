@@ -9,6 +9,7 @@ class Recipe(models.Model):
     name = models.CharField(max_length = 100)
     desc = models.CharField(max_length = 200)
     image = models.ImageField(blank=True,upload_to='images')
+    
 
 class Profile (models.Model):
     def __str__(self):

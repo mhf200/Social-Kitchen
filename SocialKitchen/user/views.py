@@ -112,11 +112,7 @@ def delete_recipe(request,id):
 
 
 
-
 @login_required
-
-
-
 def create_profile(request):
      if request.method == 'POST':
           contact_number = request.POST.get('contact_number')
