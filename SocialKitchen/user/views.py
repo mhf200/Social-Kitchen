@@ -80,11 +80,14 @@ def add_recipe(request):
     if request.method == 'POST':
         name = request.POST.get('name')
         desc = request.POST.get('desc')
+        ingredients = request.POST.get('ingredients')
+        cooking_instructions = request.POST.get('cooking_instructions')
         image = request.FILES['upload']
         chef = request.user
-        recipe = Recipe(name=name ,  desc = desc , image=image , chef = chef)
+        recipe = Recipe(name=name ,  desc=desc , ingredients=ingredients, cooking_instructions=cooking_instructions, image=image , chef=chef)
         recipe.save()
     return render(request, 'user/addrecipe.html')
+
 
 def update_recipe(request , id ):
     recipe = Recipe.objects.get(id = id )

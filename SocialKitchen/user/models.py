@@ -8,6 +8,8 @@ class Recipe(models.Model):
     chef = models.ForeignKey(User,on_delete=models.CASCADE , default=1)    
     name = models.CharField(max_length = 100)
     desc = models.CharField(max_length = 200)
+    ingredients = models.TextField()
+    cooking_instructions = models.TextField()
     image = models.ImageField(blank=True,upload_to='images')
     
 

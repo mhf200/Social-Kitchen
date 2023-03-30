@@ -2,21 +2,26 @@
 
 {% block content %}
 
-
-<div class="flex p-10 w-full h-200">
-    <img class="w-1/3" src="{{recipe.image.url}}">
-    <div class="w-2/3 text-xl ml-10 mt-10">
-        <div class="mt-5 text-green-500">{{recipe.name}}</div>
-        <div class="mt-5 text-gray-700">{{recipe.desc}}</div>
-        <div class="mt-5 text-gray-700">
-            Posted By :<a href="{% url 'user:chefprofile' recipe.chef.id %}">{{recipe.chef}}</a>
-           </div>
-        <div class="mt-5 text-gray-700">Contact: {{recipe.chef.profile.contact_number}}</div>
-       
-     
-        
+<div class="  container">
+  <div class=" row justify-content-center">
+    <div class=" mt-16 col-md-8 col-lg-6">
+      <div class=" card mb-4">
+        <img class=" card-img-top" src="{{recipe.image.url}}">
+        <div class="card-body">
+          <h3 class="card-title">{{recipe.name}}</h3>
+          <p class="card-text">{{recipe.desc}}</p>
+          <p class="card-text">Posted By: <a href="{% url 'user:chefprofile' recipe.chef.id %}">{{recipe.chef}}</a></p>
+          <p class="card-text">Contact: {{recipe.chef.profile.contact_number}}</p>
+          <hr>
+          <h5 class="card-subtitle mb-2 text-muted">Ingredients:</h5>
+          <pre class="card-text">{{recipe.ingredients}}</pre>
+          <hr>
+          <h5 class="card-subtitle mb-2 text-muted">Cooking Instructions:</h5>
+          <pre class="card-text">{{recipe.cooking_instructions}}</pre>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
-
 
 {% endblock %}
