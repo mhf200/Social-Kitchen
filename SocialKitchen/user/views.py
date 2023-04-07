@@ -94,7 +94,10 @@ def update_recipe(request , id ):
     if request.method == 'POST':
         recipe.name = request.POST.get('name')
         recipe.desc = request.POST.get('desc')
-        recipe.image = request.FILES['upload']
+        recipe.ingredients = request.POST.get('ingredients')
+        recipe.cooking_instructions = request.POST.get('cooking_instructions')
+        if 'upload' in request.FILES:
+            recipe.image = request.FILES['upload']
         recipe.save()
         return redirect('user:recipes')
     context = {
