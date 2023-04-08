@@ -1,6 +1,8 @@
 
 
 {%load static%}
+
+
 <html>
     <head>
         <meta charset="utf-8">
@@ -27,9 +29,8 @@
         <nav id="navbar" class="navbar" style="background-color: white;">
             <ul>
               <li><a href="/" style="text-decoration:none;" >Home</a></li>
-              <li><a href="/#about" style="text-decoration:none;" >About</a></li>
-              <li><a href="/#gallery" style="text-decoration:none;" >Gallery</a></li>
-              <li><a href="/#contact" style="text-decoration:none;">Contact</a></li>
+             
+             
     
               <li><a class="navbar-brand" href="/recipes">Recipes</a></li>
               <li><a class="navbar-brand" href="/recipes/add">Add Recipe</a></li>
@@ -44,7 +45,30 @@
             <div class="card">
               <img   class="card-img-top  " src="{{recipe.image.url}}" alt="{{recipe.name}}">
             </div>
-            
+            <form method="post">
+              {% csrf_token %}
+              <button  class="btn-warning rounded"  type="submit">Rate</button>
+              <div class="stars">
+                <input type="radio" name="rating" class="star-1" id="star-1" value="5">
+                <label class="star-1" for="star-1"></label>
+                <input type="radio" name="rating" class="star-2" id="star-2" value="4">
+                <label class="star-2" for="star-2"></label>
+                <input type="radio" name="rating" class="star-3" id="star-3" value="3">
+                <label class="star-3" for="star-3"></label>
+                <input type="radio" name="rating" class="star-4" id="star-4" value="2">
+                <label class="star-4" for="star-4"></label>
+                <input type="radio" name="rating" class="star-5" id="star-5" value="1">
+                <label class="star-5" for="star-5"></label>
+                <span></span>
+              </div>
+              
+              
+            </form>
+            {% if ratings %}
+            <strong style="font-size: large; " >Average rating:   <i class="fa fa-star">{{ avg_rating }}</i></strong> <hr>
+        <p>Number of people who rated this recipe : {{ recipe.ratings.count }}
+        </p>
+        {% endif %}
 
 
           </div>
@@ -80,4 +104,42 @@
   </style>
 {% endblock %}
 
+
+<style>
+  .stars {
+    display: inline-block;
+  }
+  input[type="radio"] {
+    display: none;
+  }
+  label.star-1:before,
+  label.star-2:before,
+  label.star-3:before,
+  label.star-4:before,
+  label.star-5:before {
+    content: "\f005";
+    font-family: FontAwesome;
+    font-size: 25px;
+    color: #ccc;
+    cursor: pointer;
+  }
+  label.star-1:before {
+    content: "\f005";
+  }
+  label.star-2:before {
+    content: "\f005";
+  }
+  label.star-3:before {
+    content: "\f005";
+  }
+  label.star-4:before {
+    content: "\f005";
+  }
+  label.star-5:before {
+    content: "\f005";
+  }
+  input[type="radio"]:checked ~ label:before {
+    color: #FFC107;
+  }
+  </style>
 </html>

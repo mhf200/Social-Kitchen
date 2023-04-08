@@ -7,9 +7,11 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Recipe
 from .models import Profile
+from .models import Rating
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator
 from django.db.models import Q
+from django.db.models import Avg
 
 # Create your views here.
 
@@ -67,13 +69,33 @@ def recipes(request):
     }
     return render(request, 'user/index.html', context)
 
-def recipe_detail(request,id):
-    recipe = Recipe.objects.get(id=id)
-    context = {
-        'recipe':recipe 
-    }
-    return render(request , 'user/details.html ',context)
+@login_required
+def recipe_detail(request, id):
+    recipe = get_object_or_404(Recipe, id=id)
+    ratings = recipe.ratings.all()
 
+    if request.method == 'POST':
+        rating_value = int(request.POST['rating'])
+        user = request.user
+
+        rating = Rating.objects.filter(recipe=recipe, user=user).first()
+        if rating:
+            rating.rating = rating_value
+            rating.save()
+        else:
+            rating = Rating(recipe=recipe, user=user, rating=rating_value)
+            rating.save()
+
+        ratings = recipe.ratings.all()
+
+    avg_rating = ratings.aggregate(Avg('rating'))['rating__avg']
+
+    context = {
+        'recipe': recipe,
+        'ratings': ratings,
+        'avg_rating': avg_rating
+    }
+    return render(request, 'user/details.html', context)
 
 @login_required
 def add_recipe(request):
@@ -147,3 +169,12 @@ def profile(request):
     return render(request, 'user/users.html', {'users': users})
 
 
+@login_required
+def create_rating(request, recipe_id):
+    recipe = get_object_or_404(Recipe, pk=recipe_id)
+    if request.method == 'POST':
+        rating = request.POST.get('rating')
+        new_rating = Rating(recipe=recipe, user=request.user, rating=rating)
+        new_rating.save()
+        return redirect('recipe_detail', id=recipe.id)
+    return render(request, 'create_rating.html', {'recipe': recipe})
