@@ -46,7 +46,8 @@
       
 
       
-      <a class="btn-book-a-table"style="text-decoration:none;" href="/loginpage">Login</a>
+      <span> <a class="btn-book-a-table"style="text-decoration:none;" href="/loginpage">Login</a>
+        {% if user.is_authenticated %}<a class="btn btn-outline-success ml-3" href="/recipes">{{ user.username }}</a></span>{% endif %}
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
 
