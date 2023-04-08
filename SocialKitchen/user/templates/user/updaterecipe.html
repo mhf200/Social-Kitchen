@@ -1,7 +1,9 @@
 {% extends 'user/base.html' %}
+{% load static %}
 {% block content %}
+<body style="background-image: url('{% static 'user/images/adds.avif' %}');"></body>
 <div class="pt-20">
-<h1 class="text-2xl m-10 font-bold"> + Update Recipes</h1>
+<h1 class="text-4xl m-10 font-bold"> + Update Recipes</h1>
 
 <form class=" w-3/5 bg-white shadow-md m-10 px-8 py-8"  method="POST" enctype="multipart/form-data">
     {%csrf_token%}
