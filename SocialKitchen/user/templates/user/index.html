@@ -28,22 +28,16 @@
     
 </main>
 <div class="container">
-<div class="dropdown">
-    <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"><i class="bi bi-tag"></i>Categories</button>
-    <div class="dropdown-contentt">
-      <a href="#">Chicken</a>
-      <a href="#">Beef</a>
-      <a href="#">Seafood</a>
-      <a href="#">Pizza</a>
-      <a href="#">Pasta</a>
-      <a href="#">Soups</a>
-      <a href="#">Drinks</a>
-      <a href="#">Vegetables</a>
-      <a href="#">Desserts</a>
-      
+    <div class="dropdown">
+        <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"><i class="bi bi-tag"></i>Categories</button>
+        <div class="dropdown-contentt">
+          <a href="{% url 'user:LeanMeat' %}">Lean Meat</a>
+          <a href="{% url 'user:WholeGrains' %}">Whole Grains</a>
+          <a href="{% url 'user:Vegan' %}">Vegan</a>
+          <a href="{% url 'user:Dairy' %}">Dairy</a>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
 
 
 <div class="flex justify-center ">
