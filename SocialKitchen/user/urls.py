@@ -19,10 +19,9 @@ urlpatterns = [
     path ('chefprofile/<int:id>',views.chef_profile , name='chefprofile'),
     path ('recipes/mylistings',views.my_listings , name='mylistings'),
     path ('recipes/myprofile',views.my_profile , name='myprofile'),
-   
-
-   
-    
-
+    path ('LeanMeatFilter', views.LeanMeat_category_filter, name="LeanMeat"),
+    path ('WholeGrainsFilter', views.WholeGrains_category_filter, name="WholeGrains"),
+    path ('VeganFilter', views.Vegan_category_filter, name="Vegan"),
+    path ('DairyFilter', views.Dairy_category_filter, name="Dairy"),
 
 ]
