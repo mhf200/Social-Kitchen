@@ -39,10 +39,10 @@
                             <h2 class="recipe-title">{{recipe.name}}</h2>
                             <p>{{recipe.desc}}</p>
                             <span class="w-1/5 my-10 mx-10">
-                                <a class="bg-green-500 text-white font-bold px-5 py-2" href="{% url 'user:update_recipe' recipe.id %}">Edit</a>
+                                <a class="bg-green-500 text-white font-bold px-5 py-2 rounded" href="{% url 'user:update_recipe' recipe.id %}">Edit</a>
                             </span>
                             <span class="w-1/5 my-10 mx-10">
-                                <a class="bg-red-500 text-white font-bold px-5 py-2" href="{% url 'user:delete_recipe' recipe.id %}">Delete</a>
+                                <a class="bg-red-500 text-white font-bold px-5 py-2 rounded" href="{% url 'user:delete_recipe' recipe.id %}">Delete</a>
                             </span>
 
                         </div>

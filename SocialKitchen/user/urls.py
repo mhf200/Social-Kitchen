@@ -18,6 +18,7 @@ urlpatterns = [
     path ('createprofile/',views.create_profile , name='createprofile'),
     path ('chefprofile/<int:id>',views.chef_profile , name='chefprofile'),
     path ('recipes/mylistings',views.my_listings , name='mylistings'),
+    path ('recipes/myprofile',views.my_profile , name='myprofile'),
    
 
    

@@ -1,5 +1,16 @@
 {% extends 'user/base.html' %}
 
+{% block navbar %}
+<nav id="navbar" class="navbar">
+    <ul>
+      <li><a href="/" style="text-decoration:none;" >Home</a></li>
+      <li><a class="navbar-brand" href="/recipes">Recipes</a></li>
+      <li><a class="navbar-brand" href="/recipes/add">Add Recipe</a></li>
+      <li><a class="navbar-brand" href="{% url 'user:mylistings' %}">My Recipes</a></li>
+      <li><a class="navbar-brand" href="{% url 'user:myprofile' %}">My Profile</a></li>
+      </nav>
+{% endblock %}
+
 {% load static %}
 
 {% block content %}

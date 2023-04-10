@@ -12,7 +12,6 @@ from django.contrib.auth.models import User
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.db.models import Avg
-
 # Create your views here.
 
 def loginPage(request):
@@ -139,16 +138,31 @@ def delete_recipe(request,id):
     return render(request,'user/delete.html',context)
 
 
-
 @login_required
 def create_profile(request):
-     if request.method == 'POST':
-          contact_number = request.POST.get('contact_number')
-          image = request.FILES['upload']
-          user = request.user
-          profile = Profile(user=user , image=image , contact_number = contact_number)
-          profile.save()
-     return render(request,'user/createprofile.html')
+    try:
+        profile = Profile.objects.get(user=request.user)
+    except Profile.DoesNotExist:
+        profile = None
+
+    if request.method == 'POST':
+        contact_number = request.POST.get('contact_number')
+        image = request.FILES.get('upload')
+
+        if profile:
+            profile.contact_number = contact_number
+            if image:
+                profile.image = image
+            profile.save()
+        else:
+            profile = Profile(user=request.user, image=image, contact_number=contact_number)
+            profile.save()
+
+    context = {
+        'profile': profile
+    }
+    return render(request, 'user/createprofile.html', context)
+
 
 def chef_profile(request,id):
      cheff = User.objects.get(id=id)
@@ -178,3 +192,11 @@ def create_rating(request, recipe_id):
         new_rating.save()
         return redirect('recipe_detail', id=recipe.id)
     return render(request, 'create_rating.html', {'recipe': recipe})
+
+@login_required
+def my_profile(request):
+    profile = request.user.profile
+    context = {
+        'profile': profile,
+    }
+    return render(request, 'user/myprofile.html', context)
