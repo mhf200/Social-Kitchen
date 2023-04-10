@@ -103,10 +103,10 @@ def add_recipe(request):
         desc = request.POST.get('desc')
         ingredients = request.POST.get('ingredients')
         cooking_instructions = request.POST.get('cooking_instructions')
-        category = request.POST.get('category')
+
         image = request.FILES['upload']
         chef = request.user
-        recipe = Recipe(name=name ,  desc=desc , ingredients=ingredients, cooking_instructions=cooking_instructions,category=category, image=image , chef=chef)
+        recipe = Recipe(name=name ,  desc=desc , ingredients=ingredients, cooking_instructions=cooking_instructions, image=image , chef=chef)
         recipe.save()
     return render(request, 'user/addrecipe.html')
 
