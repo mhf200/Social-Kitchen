@@ -5,12 +5,13 @@ from .forms import CreateUserForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .models import Recipe, Profile, Rating
+from .models import Recipe
+from .models import Profile
+from .models import Rating
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.db.models import Avg
-
 # Create your views here.
 
 def loginPage(request):
@@ -102,10 +103,9 @@ def add_recipe(request):
         desc = request.POST.get('desc')
         ingredients = request.POST.get('ingredients')
         cooking_instructions = request.POST.get('cooking_instructions')
-        category = request.POST.get('category')
         image = request.FILES['upload']
         chef = request.user
-        recipe = Recipe(name=name ,  desc=desc , ingredients=ingredients, cooking_instructions=cooking_instructions,category=category, image=image , chef=chef)
+        recipe = Recipe(name=name ,  desc=desc , ingredients=ingredients, cooking_instructions=cooking_instructions, image=image , chef=chef)
         recipe.save()
     return render(request, 'user/addrecipe.html')
 
@@ -192,3 +192,11 @@ def create_rating(request, recipe_id):
         new_rating.save()
         return redirect('recipe_detail', id=recipe.id)
     return render(request, 'create_rating.html', {'recipe': recipe})
+
+@login_required
+def my_profile(request):
+    profile = request.user.profile
+    context = {
+        'profile': profile,
+    }
+    return render(request, 'user/myprofile.html', context)
