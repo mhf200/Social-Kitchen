@@ -18,10 +18,16 @@ urlpatterns = [
     path ('createprofile/',views.create_profile , name='createprofile'),
     path ('chefprofile/<int:id>',views.chef_profile , name='chefprofile'),
     path ('recipes/mylistings',views.my_listings , name='mylistings'),
+<<<<<<< HEAD
     path ('LeanMeatFilter', views.LeanMeat_category_filter, name="LeanMeat"),
     path ('WholeGrainsFilter', views.WholeGrains_category_filter, name="WholeGrains"),
     path ('VeganFilter', views.Vegan_category_filter, name="Vegan"),
     path ('DairyFilter', views.Dairy_category_filter, name="Dairy"),
+=======
+    path ('recipes/myprofile',views.my_profile , name='myprofile'),
+   
+
+>>>>>>> e92dfa8a96bfead5d4cfc0ab3ce21266eb6fa0ee
    
     
 

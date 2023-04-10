@@ -1,28 +1,93 @@
 {% extends 'user/base.html' %}
- 
+ {% load static %} 
 {% block content %}
-
-<div class="text-2xl m-10 p-10 font-bold">📄 My Recipes</div>
-{% for recipe in recipes%}
-<div class="itemcontainer flex shadow-lg m-10 p-10">
-    <span class="w-1/5">
-        {% if recipe.image %}
-            <img class="w-full" src="{{ recipe.image.url }}">
-            {% endif %}
-    </span>
-    <span class="w-1/5">
-        <div class="font-bold text-green-700">{{recipe.name}}</div>
-        <div class="text-gray-500">{{recipe.desc}}</div>
-    </span>
-    <span class="w-1/5 my-10 mx-10">
-        <a class="bg-green-500 text-white font-bold px-5 py-2" href="{% url 'user:update_recipe' recipe.id %}">Edit</a>
-    </span>
-    <span class="w-1/5 my-10 mx-10">
-        <a class="bg-red-500 text-white font-bold px-5 py-2" href="{% url 'user:delete_recipe' recipe.id %}">Delete</a>
-    </span>
-</div>
+<html>
+    <head>
+  <title> Social Kitchen</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+<link rel="stylesheet" type="text/css" href="{% static 'user/main.css' %}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Amatic+SC:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 
 
+</head>
 
-{%endfor%}
-{% endblock %}  
+<body style="background-color: bisque;">
+    <div class="text-2xl m-10 p-10 font-bold">
+        <div class="section-header mt-5">   <p>My Recipes 📄</p> </div>
+
+    </div>
+   
+    {% for recipe in recipes%}
+    <main class="main-content">
+				
+        <div class="content">
+            <div class="container">
+
+                <div class="recipes-list">
+                    <article class="recipe">
+                        <figure class="recipe-image"><img class="w-full" src="{{ recipe.image.url }}"></figure>
+                        <div class="recipe-detail">
+                            <h2 class="recipe-title">{{recipe.name}}</h2>
+                            <p>{{recipe.desc}}</p>
+                            <span class="w-1/5 my-10 mx-10">
+                                <a class="bg-green-500 text-white font-bold px-5 py-2 rounded" href="{% url 'user:update_recipe' recipe.id %}">Edit</a>
+                            </span>
+                            <span class="w-1/5 my-10 mx-10">
+                                <a class="bg-red-500 text-white font-bold px-5 py-2 rounded" href="{% url 'user:delete_recipe' recipe.id %}">Delete</a>
+                            </span>
+
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+
+    </main> <!-- .main-content -->
+    {%endfor%}
+
+
+
+
+
+
+</body>
+
+<style>
+    /* adjust the layout for small screens */
+    @media screen and (max-width: 640px) {
+        .itemcontainer {
+            flex-direction: column;
+        }
+        .w-full {
+            width: 100% !important;
+        }
+    }
+
+    .recipes-list { margin-top: 50px; }
+
+.recipe { *zoom: 1; background-color: white; padding: 15px; border-radius: 150px; margin-bottom: 30px; }
+.recipe:after { content: " "; clear: both; display: block; overflow: hidden; height: 0; }
+@media screen and (max-width: 990px) { .recipe { border-radius: 10px; } }
+.recipe .recipe-image { width: 242px; height: 242px; border-radius: 50%; overflow: hidden; float: left; margin-right: 45px; text-align: center; }
+@media screen and (max-width: 640px) { .recipe .recipe-image { float: none; display: block; margin: 0 auto 30px; } }
+.recipe .recipe-image img { display: block; max-width: 100%; }
+.recipe .recipe-title { font-weight: 300; }
+
+.recipe-meta span.time, .recipe-meta span.calorie, .recipe-meta span.comment { margin-right: 15px; }
+.recipe-meta span.time img, .recipe-meta span.calorie img, .recipe-meta span.comment img { vertical-align: middle; margin-right: 10px; }
+
+
+
+</style>
+
+{% endblock %}
+</html>

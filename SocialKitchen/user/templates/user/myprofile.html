@@ -1,0 +1,30 @@
+{% extends 'user/base.html' %}
+
+{% block content %}
+
+<div class="grid p-10 grid-cols-1 lg:grid-cols-3 sm:grid-cols-1">
+    <div class="rounded shadow-lg">
+   
+   <!-- Header Section -->
+    <div class="flex flex-col items-center justify-center p-5">
+        <img src="{{ profile.image.url }}" class="w-24 h-24 rounded-full object-cover">
+        <h2 class="text-xl font-bold mt-2">{{ profile.user.username }}</h2>
+        <p class="text-gray-500 text-sm">{{ profile.description }}</p>
+    </div>
+    
+    <!-- Contact Section -->
+    <div class="px-6 py-4">
+        <div class="font-bold text-xl mb-2">Contact Information:</div>
+        <p class="text-gray-500 text-sm">📞 {{ profile.contact_number }}</p>
+        <p class="text-gray-500 text-sm">📧 {{ profile.user.email }}</p>
+        <a href="{% url 'user:createprofile' %}" class="btn btn-dark btn-md">Edit Profile</a>
+      
+    </div>
+    
+
+</div>
+
+</div>
+
+
+{% endblock %}
