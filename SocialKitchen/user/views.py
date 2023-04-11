@@ -103,10 +103,10 @@ def add_recipe(request):
         desc = request.POST.get('desc')
         ingredients = request.POST.get('ingredients')
         cooking_instructions = request.POST.get('cooking_instructions')
-
+        category= request.POST.get('category')
         image = request.FILES['upload']
         chef = request.user
-        recipe = Recipe(name=name ,  desc=desc , ingredients=ingredients, cooking_instructions=cooking_instructions, image=image , chef=chef)
+        recipe = Recipe(name=name ,  desc=desc , ingredients=ingredients, cooking_instructions=cooking_instructions,category=category, image=image , chef=chef)
         recipe.save()
     return render(request, 'user/addrecipe.html')
 
@@ -201,3 +201,47 @@ def my_profile(request):
         'profile': profile,
     }
     return render(request, 'user/myprofile.html', context)
+
+def LeanMeat_category_filter(request):
+     qs= Recipe.objects.all()
+     recipes = []
+     for recipe in qs:
+        if recipe.category == 'lean_meat':
+             recipes.append(recipe)
+     return render(request, "user/filter.html", {
+          'recipes':recipes,
+          'title': "Lean Meat Recipes"
+     })
+
+def WholeGrains_category_filter(request):
+     qs= Recipe.objects.all()
+     recipes = []
+     for recipe in qs:
+        if recipe.category == 'whole_grains':
+             recipes.append(recipe)
+     return render(request, "user/filter.html", {
+          'recipes':recipes,
+          'title': "Whole Grain Recipes"
+     })
+
+def Vegan_category_filter(request):
+     qs= Recipe.objects.all()
+     recipes = []
+     for recipe in qs:
+        if recipe.category == 'vegan':
+             recipes.append(recipe)
+     return render(request, "user/filter.html", {
+          'recipes':recipes,
+          'title': "Vegan Recipes"
+     })
+
+def Dairy_category_filter(request):
+     qs= Recipe.objects.all()
+     recipes = []
+     for recipe in qs:
+        if recipe.category == 'dairy':
+             recipes.append(recipe)
+     return render(request, "user/filter.html", {
+          'recipes':recipes,
+          'title': "Dairy Recipes"
+     })

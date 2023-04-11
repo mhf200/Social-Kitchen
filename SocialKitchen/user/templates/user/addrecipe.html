@@ -25,6 +25,18 @@
                 <label for="cooking_instructions">Cooking Instructions</label>
                 <textarea class="form-control" id="cooking_instructions" name="cooking_instructions" rows="5" required></textarea>
             </div>
+            <div class="form-group">
+                <p>Choose Category: </p>
+                <input type="radio" id="LeanMeat" name="category" value="lean_meat">
+                <label for="LeanMeat">Lean Meat</label><br>
+                <input type="radio" id="WholeGrains" name="category" value="whole_grains">
+                <label for="WholeGrains">Whole Grains</label><br>
+                <input type="radio" id="Vegan" name="category" value="vegan">
+                <label for="Vegan">Vegan</label><br>
+                <input type="radio" id="Dairy" name="category" value="dairy">
+                <label for="Dairy">Dairy</label><br>
+            </div>
+
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="">Recipe Image </label>
                 <input class="py-2 " type="file" accept="image/*" name="upload" id="upload" >
