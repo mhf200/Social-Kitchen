@@ -12,6 +12,8 @@ class Recipe(models.Model):
     ingredients = models.TextField()
     cooking_instructions = models.TextField()
     image = models.ImageField(blank=True,upload_to='images')
+    category = models.CharField(max_length=100, default='uncategorized')
+
 
 class Profile (models.Model):
     def __str__(self):
