@@ -84,7 +84,13 @@
                 <hr>
                 <div class="section-header "> 
                 <p style="color: red;">Ingredients</p></div>
-<p style="font-family: Verdana, sans-serif; color: black; white-space: pre-wrap;">{{recipe.ingredients}}</p>
+<p style="font-family: Verdana, sans-serif; color: black; white-space: pre-wrap;">
+  <ul>
+    {% for ingredient in recipe_ingredients %}
+    <li>{{ingredient}}</li>
+    {% endfor %}
+  </ul>
+</p>
 <hr>
 <div class="section-header "><p  style= "color: red;">Cooking Instructions</p></div>
 <p style="font-family: Verdana, sans-serif; color: black; white-space: pre-wrap;">{{recipe.cooking_instructions}}</p>

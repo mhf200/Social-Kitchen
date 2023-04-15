@@ -12,6 +12,7 @@ from django.contrib.auth.models import User
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.db.models import Avg
+from .forms import IngredientForm
 # Create your views here.
 
 def loginPage(request):
@@ -92,23 +93,37 @@ def recipe_detail(request, id):
     context = {
         'recipe': recipe,
         'ratings': ratings,
-        'avg_rating': avg_rating
+        'avg_rating': avg_rating,
+        'recipe_ingredients': recipe.ingredients.all()
     }
     return render(request, 'user/details.html', context)
 
 @login_required
 def add_recipe(request):
+    form = IngredientForm()
     if request.method == 'POST':
-        name = request.POST.get('name')
-        desc = request.POST.get('desc')
-        ingredients = request.POST.get('ingredients')
-        cooking_instructions = request.POST.get('cooking_instructions')
-        category= request.POST.get('category')
-        image = request.FILES['upload']
-        chef = request.user
-        recipe = Recipe(name=name ,  desc=desc , ingredients=ingredients, cooking_instructions=cooking_instructions,category=category, image=image , chef=chef)
-        recipe.save()
-    return render(request, 'user/addrecipe.html')
+        form = IngredientForm(request.POST)
+        if form.is_valid():
+            selected_ingredient_id = form.cleaned_data['ingredient'].id
+            weight = form.cleaned_data['weight']
+            chef = request.user
+            name = request.POST.get('name')
+            desc = request.POST.get('desc')
+            cooking_instructions = request.POST.get('cooking_instructions')
+            category = request.POST.get('category')
+            image = request.FILES.get('upload')
+            recipe = Recipe(
+                chef=chef,
+                name=name,
+                desc=desc,
+                cooking_instructions=cooking_instructions,
+                category=category,
+                image=image
+            )
+            recipe.save()
+            recipe.ingredients.add(selected_ingredient_id, through_defaults={'weight': weight})
+    return render(request, 'user/addrecipe.html', {'form': form})
+
 
 
 def update_recipe(request , id ):
