@@ -1,3 +1,11 @@
+.scroll {
+  overflow-y: scroll;
+  max-height: 600px; /* adjust the value to fit your needs */
+}
+
+
+
+
 /* Style the button */
 .dropdown-btnn {
   background-color: #4CAF50;

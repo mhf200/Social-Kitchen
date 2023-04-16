@@ -1,14 +1,26 @@
 {% extends 'user/base.html' %}
 
 {% block navbar %}
-<nav id="navbar" class="navbar">
+
+<a href="home.html" style="text-decoration:none;" class="logo d-flex align-items-center me-auto me-lg-0">
+    <h1>Social Kitchen <span>.</span></h1>  
+  </a>
+<nav id="navbar" class="navbar " >
     <ul>
       <li><a href="/" style="text-decoration:none;" >Home</a></li>
-      <li><a class="navbar-brand" href="/recipes">Recipes</a></li>
-      <li><a class="navbar-brand" href="/recipes/add">Add Recipe</a></li>
-      <li><a class="navbar-brand" href="{% url 'user:mylistings' %}">My Recipes</a></li>
       <li><a class="navbar-brand" href="{% url 'user:createprofile' %}">Create Profile</a></li>
       <li><a class="navbar-brand" href="{% url 'user:myprofile' %}">My Profile</a></li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Recipes
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <li><a class="dropdown-item" href="/recipes">All Recipes</a></li>
+          <li><a class="dropdown-item" href="/recipes/add">Add Recipes </a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" href="{% url 'user:mylistings' %}">My Recipes</a></li>
+        </ul>
+      </li>
       </nav>
 {% endblock %}
 
@@ -58,9 +70,9 @@
     <button type="submit" class="btn btn-success">Search</button>
   </form>
 </div>
-
+<div class="scroll" id="style-2" style="max-height: 500px; overflow-y: auto;">
 <div class="grid-container">
-    <div class="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 xl:grid-cols-3 lg:grid-cols-3 gap-5">
+    <div class="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 xl:grid-cols-3 lg:grid-cols-3 gap-5 ">
 
     {%for recipe in recipes %}
     
@@ -84,26 +96,7 @@
 </div>
 
 
-<div class="pagination justify-content-center">
-    {% if recipes.has_previous %}
-        <a href="?page=1">&laquo;</a>
-        <a href="?page={{ recipes.previous_page_number }}">&lsaquo;</a>
-    {% endif %}
-    
-    {% for i in recipes.paginator.page_range %}
-        {% if recipes.number == i %}
-            <a class="active" href="#">{{ i }}</a>
-        {% elif i > recipes.number|add:'-3' and i < recipes.number|add:'3' %}
-            <a href="?page={{ i }}">{{ i }}</a>
-        {% endif %}
-    {% endfor %}
-    
-    {% if recipes.has_next %}
-        <a href="?page={{ recipes.next_page_number }}">&rsaquo;</a>
-        <a href="?page={{ recipes.paginator.num_pages }}">&raquo;</a>
-    {% endif %}
 </div>
-
 {% endblock%}
 
 </body>

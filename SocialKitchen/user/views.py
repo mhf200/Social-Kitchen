@@ -54,19 +54,16 @@ def index( request):
 	return render(request, 'user/index.html')
 
 def recipes(request):
-    queryset = Recipe.objects.all()
+    queryset = Recipe.objects.order_by('-id')
     query = request.GET.get('q')
     if query:
         queryset = queryset.filter(Q(name__icontains=query))
-        
-    paginator = Paginator(queryset, 9)
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-    
+
     context = {
-        'recipes': page_obj
+        'recipes': queryset
     }
     return render(request, 'user/index.html', context)
+
 
 @login_required
 def recipe_detail(request, id):
