@@ -1,5 +1,6 @@
 {% extends 'user/base.html' %}
 
+
 {% block navbar %}
 
 <a href="home.html" style="text-decoration:none;" class="logo d-flex align-items-center me-auto me-lg-0">
@@ -28,6 +29,7 @@
 
 {% block content %}
 <html>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <link rel="stylesheet" type="text/css" href="{% static 'user/main.css' %}"> 
 <link rel="stylesheet" type="text/css" href="{% static 'user/category.css' %}"> 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
@@ -87,6 +89,7 @@
             <div class="font-bold text-xl mb-2" >{{recipe.name}}</div>
             <div class="font-bold mb-2" style="text-decoration: none;" >Posted By : <span class="text-indigo-500">{{recipe.chef}}</span></div>
             <p class="text-gray-700 text-base">{{recipe.desc}} </p>
+             <strong style="font-size: large; " >Average rating:   {{ recipe.avg_rating|floatformat:1 }}<i class="fa fa-star"></i></strong> 
         </div>
     </div>
 </a>

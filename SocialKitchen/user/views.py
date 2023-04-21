@@ -54,16 +54,15 @@ def index( request):
 	return render(request, 'user/index.html')
 
 def recipes(request):
-    queryset = Recipe.objects.order_by('-id')
+    queryset = Recipe.objects.annotate(avg_rating=Avg('ratings__rating')).order_by('-id')
     query = request.GET.get('q')
     if query:
         queryset = queryset.filter(Q(name__icontains=query))
-
+    
     context = {
-        'recipes': queryset
+        'recipes': queryset,
     }
     return render(request, 'user/index.html', context)
-
 
 @login_required
 def recipe_detail(request, id):
@@ -85,13 +84,15 @@ def recipe_detail(request, id):
         ratings = recipe.ratings.all()
 
     avg_rating = ratings.aggregate(Avg('rating'))['rating__avg']
+    avg_rating_rounded = round(avg_rating, 1)
 
     context = {
         'recipe': recipe,
         'ratings': ratings,
-        'avg_rating': avg_rating
+        'avg_rating': avg_rating_rounded
     }
     return render(request, 'user/details.html', context)
+
 
 @login_required
 def add_recipe(request):

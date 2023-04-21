@@ -13,13 +13,13 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='recipe',
             name='cooking_instructions',
-            field=models.TextField(default='add ingredients'),
+            field=models.TextField(default='add instructions'),
             preserve_default=False,
         ),
         migrations.AddField(
             model_name='recipe',
             name='ingredients',
-            field=models.TextField(default='add instructions'),
+            field=models.TextField(default='add ingredients'),
             preserve_default=False,
         ),
     ]
