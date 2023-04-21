@@ -84,7 +84,10 @@ def recipe_detail(request, id):
         ratings = recipe.ratings.all()
 
     avg_rating = ratings.aggregate(Avg('rating'))['rating__avg']
-    avg_rating_rounded = round(avg_rating, 1)
+    if avg_rating is not None:
+        avg_rating_rounded = round(avg_rating, 1)
+    else:
+        avg_rating_rounded = None
 
     context = {
         'recipe': recipe,
