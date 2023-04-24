@@ -12,6 +12,7 @@ from django.contrib.auth.models import User
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.db.models import Avg
+from django.db import models
 # Create your views here.
 
 def loginPage(request):
@@ -246,3 +247,22 @@ def Dairy_category_filter(request):
           'recipes':recipes,
           'title': "Dairy Recipes"
      })
+
+def recommendations(request):
+    query = request.GET.get('q')
+    if query:
+        # split the user input into a list of ingredients
+        ingredients = query.split(',')
+        # remove any leading or trailing whitespace from each ingredient
+        ingredients = [ingredient.strip() for ingredient in ingredients]
+        # filter recipes that contain all of the ingredients in the list
+        recipes = Recipe.objects.filter(
+            *[models.Q(ingredients__contains=ingredient) for ingredient in ingredients]
+        ).distinct()
+    else:
+        recipes = []
+
+    if recipes:
+        return render(request, 'user/recommendations.html', {'recipes': recipes})
+    else:
+        return render(request, 'user/recommendations.html', {'error': 'No Ingredients Written '})

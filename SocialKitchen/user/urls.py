@@ -23,6 +23,7 @@ urlpatterns = [
     path ('WholeGrainsFilter', views.WholeGrains_category_filter, name="WholeGrains"),
     path ('VeganFilter', views.Vegan_category_filter, name="Vegan"),
     path ('DairyFilter', views.Dairy_category_filter, name="Dairy"),
+    path('recipes/recommendations', views.recommendations, name='recommendations'),
 
 
    
