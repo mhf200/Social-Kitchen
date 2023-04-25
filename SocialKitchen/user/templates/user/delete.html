@@ -1,6 +1,40 @@
 {% extends 'user/base.html' %}
-{% block content %}
 
+{% block navbar %}
+
+
+<nav id="navbar" class="navbar " >
+    <ul>
+        <a href="home.html" style="text-decoration:none;" class="logo d-flex align-items-center me-auto me-lg-0">
+            <h1>Social Kitchen <span>.</span></h1>  
+          </a>
+      <li><a href="/" style="text-decoration:none;" >Home</a></li>
+      <li><a class="navbar-brand" href="{% url 'user:createprofile' %}">Create Profile</a></li>
+      <li><a class="navbar-brand" href="{% url 'user:myprofile' %}">My Profile</a></li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Recipes
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <li><a class="dropdown-item" href="/recipes">All Recipes</a></li>
+          <li><a class="dropdown-item" href="/recipes/add">Add Recipes </a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" href="{% url 'user:mylistings' %}">My Recipes</a></li>
+          <li><a class="dropdown-item" href="{% url 'user:recommendations' %}">Get Recommendations</a></li>
+        </ul>
+      </li>
+      </nav>
+{% endblock %}
+
+
+
+
+
+{% load static %} 
+
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'user/category.css' %}"> 
 <h1 class="text-2xl m-10 font-bold"> Delete Recipes </h1>
 <form  class="bg-white shadow-md m-10 w-3/5" method="post">
     {% csrf_token %}

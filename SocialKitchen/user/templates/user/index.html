@@ -11,6 +11,7 @@
       <li><a href="/" style="text-decoration:none;" >Home</a></li>
       <li><a class="navbar-brand" href="{% url 'user:createprofile' %}">Create Profile</a></li>
       <li><a class="navbar-brand" href="{% url 'user:myprofile' %}">My Profile</a></li>
+      
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
           Recipes
@@ -21,8 +22,10 @@
           <li><hr class="dropdown-divider"></li>
           <li><a class="dropdown-item" href="{% url 'user:mylistings' %}">My Recipes</a></li>
           <li><a class="dropdown-item" href="{% url 'user:recommendations' %}">Get Recommendations</a></li>
+          
         </ul>
       </li>
+      
       </nav>
 {% endblock %}
 
@@ -34,7 +37,7 @@
 <link rel="stylesheet" type="text/css" href="{% static 'user/main.css' %}"> 
 <link rel="stylesheet" type="text/css" href="{% static 'user/category.css' %}"> 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
-<body style="background-color: bisque;">
+<body style="background-image: ;" >
     <style>
         a {
           text-decoration: none;
@@ -46,18 +49,24 @@
       
       
         <div class="sm:text-center lg:text-left d-flex align-items-center justify-content-center ">
+          
             <h1 class="text-4xl font-extrabold text-gray-900 sm:text-5xl md:text-6xl mt-4">
+              
             <span class="block xl:inline "> Social Kitchen </span>
             <span class="block text-red-500 xl:inline"> Recipes </span>
         </h1>
     
         </div>
-    
+       
 </main>
 <div class="container">
+  <form method="GET" action="{% url 'user:recipes' %}">
+    <input class="btn btn-light" type="text" name="q" placeholder="Search Recipes" value="{{ request.GET.q }}">
+    <button type="submit" class="btn btn-success">Search</button>
+  </form>
     <div class="dropdown">
-        <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"><i class="bi bi-tag"></i>Categories</button>
-        <div class="dropdown-contentt">
+        <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded ml-5"><i class="bi bi-tag"></i>Categories</button>
+        <div class="dropdown-contentt ml-5">
           <a href="{% url 'user:LeanMeat' %}">Lean Meat</a>
           <a href="{% url 'user:WholeGrains' %}">Whole Grains</a>
           <a href="{% url 'user:Vegan' %}">Vegan</a>
@@ -68,10 +77,7 @@
 
 
 <div class="flex justify-center ">
-  <form method="GET" action="{% url 'user:recipes' %}">
-    <input class="btn btn-light" type="text" name="q" placeholder="Search Recipes" value="{{ request.GET.q }}">
-    <button type="submit" class="btn btn-success">Search</button>
-  </form>
+  
 </div>
 <div class="scroll" id="style-2" style="max-height: 500px; overflow-y: auto;">
 <div class="grid-container">
