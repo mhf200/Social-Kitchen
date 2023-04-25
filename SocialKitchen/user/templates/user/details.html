@@ -27,13 +27,12 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
       </head>
        
-      <body style="background-color: #4CAF50;">
+      <body style="background-color:lightgrey;">
        
         <nav id="navbar" class="navbar" style="background-color: white;">
             <ul>
-              <a href="home.html" style="text-decoration:none;" class="logo d-flex align-items-center me-auto me-lg-0">
-                <h1>Social Kitchen <span>.</span></h1>  
-              </a>
+           
+              
               <li><a href="/" style="text-decoration:none;" >Home</a></li>
              
              
@@ -86,7 +85,7 @@
                 <p style="color: red;"  class="card-text">{{recipe.desc}}</p>
                 <p class="card-text">Posted By: <span>
                 <a href="{% url 'user:chefprofile' recipe.chef.id %}">{{recipe.chef}}</a></span></p>
-                <p class="card-text">Contact: {{recipe.chef.profile.contact_number}}</p></div>
+                </div>
                 <hr>
                 <div class="section-header "> 
                 <p style="color: red;">Ingredients</p></div>

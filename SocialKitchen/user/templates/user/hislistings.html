@@ -1,0 +1,62 @@
+{% extends 'user/base.html' %}
+
+{% block navbar %}
+<nav id="navbar" class="navbar">
+    <ul>
+        <a href="home.html" style="text-decoration:none;" class="logo d-flex align-items-center me-auto me-lg-0">
+            <h1>Social Kitchen <span>.</span></h1>
+        </a>
+        <li><a href="/" style="text-decoration:none;">Home</a></li>
+        <li><a class="navbar-brand" href="{% url 'user:createprofile' %}">Create Profile</a></li>
+        <li><a class="navbar-brand" href="{% url 'user:myprofile' %}">My Profile</a></li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Recipes
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="/recipes">All Recipes</a></li>
+                <li><a class="dropdown-item" href="/recipes/add">Add Recipes </a></li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="{% url 'user:mylistings' %}">My Recipes</a></li>
+                <li><a class="dropdown-item" href="{% url 'user:recommendations' %}">Get Recommendations</a></li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+{% endblock %}
+
+{% load static %}
+
+{% block content %}
+
+<style>
+    .card {
+        margin-bottom: 30px;
+    }
+    .card-img-top {
+        height: 200px;
+        object-fit: cover;
+    }
+    
+</style>
+
+<div class="container pt-5">
+    <div class="row">
+        {% for recipe in recipes %}
+        <div class="col-md-4">
+            <div class="card">
+                <img  src="{{ recipe.image.url }}" class="card-img-top" alt="{{ recipe.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ recipe.name }}</h5>
+                    <p class="card-text">{{ recipe.desc }}</p>
+                    <a  href="{% url 'user:recipe_detail' recipe.id %}" class="btn btn-success">View Recipe</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

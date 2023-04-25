@@ -51,6 +51,8 @@ def logoutUser(request):
 def home( request):
 	return render(request, 'user/home.html')
 
+
+
 def index( request):
 	return render(request, 'user/index.html')
 
@@ -266,3 +268,10 @@ def recommendations(request):
         return render(request, 'user/recommendations.html', {'recipes': recipes})
     else:
         return render(request, 'user/recommendations.html', {'error': 'No Ingredients Written '})
+    
+def hislistings(request):
+     recipes = Recipe.objects.filter(chef=request.user)
+     context = {
+          'recipes':recipes,
+     }
+     return render(request, 'user/hislistings.html' , context)

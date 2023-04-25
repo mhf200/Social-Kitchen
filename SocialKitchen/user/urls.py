@@ -8,6 +8,7 @@ urlpatterns = [
     path('registerpage/', views.registerPage, name="registerpage"),
     path('logout/', views.logoutUser, name="logout"),
     path('', views.home, name='home'),
+   
     path('recipes/',views.recipes , name='recipes') ,
     path ( 'recipes/<int:id>/', views.recipe_detail , name='recipe_detail' ),
     path('recipes/add', views.add_recipe, name='add_recipe'),
@@ -24,6 +25,7 @@ urlpatterns = [
     path ('VeganFilter', views.Vegan_category_filter, name="Vegan"),
     path ('DairyFilter', views.Dairy_category_filter, name="Dairy"),
     path('recipes/recommendations', views.recommendations, name='recommendations'),
+    path('hislistings/', views.hislistings, name='hislistings'),
 
 
    
