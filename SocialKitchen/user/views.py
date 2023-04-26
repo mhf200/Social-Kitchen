@@ -206,49 +206,96 @@ def my_profile(request):
     }
     return render(request, 'user/myprofile.html', context)
 
-def LeanMeat_category_filter(request):
+def Meat_category_filter(request):
      qs= Recipe.objects.all()
      recipes = []
      for recipe in qs:
-        if recipe.category == 'lean_meat':
+        if recipe.category == 'meat':
              recipes.append(recipe)
      return render(request, "user/filter.html", {
           'recipes':recipes,
-          'title': "Lean Meat Recipes"
+          'title': " Meat Recipes"
      })
 
-def WholeGrains_category_filter(request):
+def Chicken_category_filter(request):
      qs= Recipe.objects.all()
      recipes = []
      for recipe in qs:
-        if recipe.category == 'whole_grains':
+        if recipe.category == 'chicken':
              recipes.append(recipe)
      return render(request, "user/filter.html", {
           'recipes':recipes,
-          'title': "Whole Grain Recipes"
+          'title': "Chicken Recipes"
      })
 
-def Vegan_category_filter(request):
+def Salads_category_filter(request):
      qs= Recipe.objects.all()
      recipes = []
      for recipe in qs:
-        if recipe.category == 'vegan':
+        if recipe.category == 'salads':
              recipes.append(recipe)
      return render(request, "user/filter.html", {
           'recipes':recipes,
-          'title': "Vegan Recipes"
+          'title': "Salads Recipes"
      })
 
-def Dairy_category_filter(request):
+def SeaFood_category_filter(request):
      qs= Recipe.objects.all()
      recipes = []
      for recipe in qs:
-        if recipe.category == 'dairy':
+        if recipe.category == 'seaFood':
              recipes.append(recipe)
      return render(request, "user/filter.html", {
           'recipes':recipes,
-          'title': "Dairy Recipes"
+          'title': "SeaFood Recipes"
      })
+
+def Drinks_category_filter(request):
+     qs= Recipe.objects.all()
+     recipes = []
+     for recipe in qs:
+        if recipe.category == 'drinks':
+             recipes.append(recipe)
+     return render(request, "user/filter.html", {
+          'recipes':recipes,
+          'title': "Drinks Recipes"
+     })
+
+def Soups_category_filter(request):
+     qs= Recipe.objects.all()
+     recipes = []
+     for recipe in qs:
+        if recipe.category == 'soups':
+             recipes.append(recipe)
+     return render(request, "user/filter.html", {
+          'recipes':recipes,
+          'title': "Soups Recipes"
+     })
+
+def Desserts_category_filter(request):
+     qs= Recipe.objects.all()
+     recipes = []
+     for recipe in qs:
+        if recipe.category == 'desserts':
+             recipes.append(recipe)
+     return render(request, "user/filter.html", {
+          'recipes':recipes,
+          'title': "Desserts Recipes"
+     })
+
+def Others_category_filter(request):
+     qs= Recipe.objects.all()
+     recipes = []
+     for recipe in qs:
+        if recipe.category == 'others':
+             recipes.append(recipe)
+     return render(request, "user/filter.html", {
+          'recipes':recipes,
+          'title': "Others Recipes"
+     })
+
+
+
 
 def recommendations(request):
     query = request.GET.get('q')
