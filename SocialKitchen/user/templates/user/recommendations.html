@@ -33,13 +33,13 @@
 
 
 {% block content %}
-
+<body style="background-color: snow;">
 <link rel="stylesheet" type="text/css" href="{% static 'user/category.css' %}"> 
 <div class="container">
 <h1 class="text-center mb-5">Recommendations</h1>
 <form class="d-flex mb-3" method="get" action="{% url 'user:recommendations' %}">
 <input class="form-control me-2" type="text" name="q" placeholder="Type Your Ingredients each seperated by a comma ">
-<button class="btn btn-primary" type="submit">Recommend</button>
+<button class="btn btn-dark" type="submit">Recommend</button>
 </form>
 <div class="row">
 {% for recipe in recipes %}
@@ -60,4 +60,5 @@
 {% endfor %}
 </div>
 </div>
+</body>
 {% endblock %}
